@@ -18,7 +18,7 @@ const Navbar = () => {
       <nav className="flex justify-between items-center py-6">
         {/*icon*/}
         <img
-          src="\images\jobnav.png"
+          src="https://images.app.goo.gl/VrFxPEMgHwpAYiA5A"
           width="60"
           height="60"
           viewBox="0 0 60 60"
