@@ -1,7 +1,15 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Convert __filename and __dirname to work with ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,20 +29,21 @@ const client = new MongoClient(uri, {
   },
 });
 
+app.use(express.static(path.join(__dirname, "/Job-Portal-Client/dist")));
+
 async function run() {
   try {
     // Connect the client to the server
     await client.connect();
 
-    //create DB
+    // Create DB
     const db = client.db("mernJobPortal");
     const jobsCollections = db.collection("demoJobs");
 
-    //post a job
+    // Post a job
     app.post("/post-job", async (req, res) => {
       const body = req.body;
       body.createAt = new Date();
-      //console.log(body);
       const result = await jobsCollections.insertOne(body);
       if (result.insertedId) {
         return res.status(200).send(result);
@@ -46,13 +55,13 @@ async function run() {
       }
     });
 
-    //get all jobs
+    // Get all jobs
     app.get("/all-jobs", async (req, res) => {
       const jobs = await jobsCollections.find({}).toArray();
       res.send(jobs);
     });
 
-    //get single job using id
+    // Get single job using id
     app.get("/all-jobs/:id", async (req, res) => {
       const id = req.params.id;
       const job = await jobsCollections.findOne({
@@ -61,16 +70,15 @@ async function run() {
       res.send(job);
     });
 
-    //get jobs by email
+    // Get jobs by email
     app.get("/myJobs/:email", async (req, res) => {
-      //console.log(req.params.email);
       const jobs = await jobsCollections
         .find({ postedBy: req.params.email })
         .toArray();
       res.send(jobs);
     });
 
-    //delete a job
+    // Delete a job
     app.delete("/job/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
@@ -78,16 +86,14 @@ async function run() {
       res.send(result);
     });
 
-    //update a job
+    // Update a job
     app.patch("/update-job/:id", async (req, res) => {
       const id = req.params.id;
       const jobData = req.body;
       const filter = { _id: new ObjectId(id) };
       const options = { upsert: true };
       const updateDoc = {
-        $set: {
-          ...jobData,
-        },
+        $set: { ...jobData },
       };
       const result = await jobsCollections.updateOne(
         filter,

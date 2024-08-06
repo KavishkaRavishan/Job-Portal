@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "firebase": "^10.12.2",
+    "job-portal-server": "file:..",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "react": "^18.2.0",
