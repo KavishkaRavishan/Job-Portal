@@ -51,11 +51,7 @@ const Navbar = () => {
         </div>
 
         {/* Nav items */}
-        <ul
-          className={`lg:flex gap-12 ${
-            isMenuOpen ? "block" : "hidden"
-          } lg:block`}
-        >
+        <ul className="hidden lg:flex gap-12">
           {navItems.map(({ path, title }) => (
             <li key={path} className="text-base text-primary">
               <NavLink
@@ -69,7 +65,7 @@ const Navbar = () => {
         </ul>
 
         {/* Sign up and login buttons */}
-        <div className="text-semibold text-primary font-medium space-x-5 hidden lg:block">
+        <div className="hidden lg:block text-semibold text-primary font-medium space-x-5">
           <Link to="/login" className="py-2 px-5 border rounded">
             Log in
           </Link>
