@@ -25,7 +25,7 @@ const MyJobs = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/job/${id}`, {
+    fetch(`https://jobportal-yaql.onrender.com/job/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
