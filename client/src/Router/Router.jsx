@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         path: "/my-job/edit-job/:id",
         element: <UpdateJob />,
         loader: ({ params }) => {
-          const url = `http://localhost:5000/all-jobs/${params.id}`;
+          const url = `https://jobportal-yaql.onrender.com/all-jobs/${params.id}`;
           return fetch(url).then((res) => res.json());
         },
       },
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         path: "/job/:id",
         element: <JobDetails />,
         loader: ({ params }) => {
-          const url = `http://localhost:5000/all-jobs/${params.id}`;
+          const url = `https://jobportal-yaql.onrender.com/all-jobs/${params.id}`;
           return fetch(url).then((res) => res.json());
         },
       },
