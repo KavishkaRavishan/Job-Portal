@@ -29,7 +29,7 @@ const client = new MongoClient(uri, {
   },
 });
 
-app.use(express.static(path.join(__dirname, "/Job-Portal-Client/dist")));
+app.use(express.static(path.join(__dirname, "/client/dist")));
 
 async function run() {
   try {
