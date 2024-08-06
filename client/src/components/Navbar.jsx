@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const handleMenuToggler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -81,21 +82,31 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile sign up and login buttons */}
-      <div
-        className={`lg:hidden ${
-          isMenuOpen ? "block" : "hidden"
-        } space-y-4 mt-4`}
-      >
-        <Link to="/login" className="py-2 px-5 border rounded block">
-          Log in
-        </Link>
-        <Link
-          to="/signup"
-          className="py-2 px-5 border rounded bg-green-500 text-white block"
-        >
-          Sign up
-        </Link>
+      {/* Mobile nav items, sign up, and login buttons */}
+      <div className={`lg:hidden ${isMenuOpen ? "block" : "hidden"} mt-4`}>
+        <ul className="space-y-4">
+          {navItems.map(({ path, title }) => (
+            <li key={path} className="text-base text-primary">
+              <NavLink
+                to={path}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                {title}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+        <div className="space-y-4 mt-4">
+          <Link to="/login" className="py-2 px-5 border rounded block">
+            Log in
+          </Link>
+          <Link
+            to="/signup"
+            className="py-2 px-5 border rounded bg-green-500 text-white block"
+          >
+            Sign up
+          </Link>
+        </div>
       </div>
     </header>
   );
