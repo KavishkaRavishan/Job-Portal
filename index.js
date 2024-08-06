@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
@@ -8,8 +9,6 @@ import { fileURLToPath } from "url";
 // Convert __filename and __dirname to work with ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -31,19 +30,24 @@ const client = new MongoClient(uri, {
 
 app.use(express.static(path.join(__dirname, "/Job-Portal-Client/dist")));
 
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "Job-Portal-Client", "index.html"));
+// });
+
 async function run() {
   try {
     // Connect the client to the server
     await client.connect();
 
-    // Create DB
+    //create DB
     const db = client.db("mernJobPortal");
     const jobsCollections = db.collection("demoJobs");
 
-    // Post a job
+    //post a job
     app.post("/post-job", async (req, res) => {
       const body = req.body;
       body.createAt = new Date();
+      //console.log(body);
       const result = await jobsCollections.insertOne(body);
       if (result.insertedId) {
         return res.status(200).send(result);
@@ -55,13 +59,13 @@ async function run() {
       }
     });
 
-    // Get all jobs
+    //get all jobs
     app.get("/all-jobs", async (req, res) => {
       const jobs = await jobsCollections.find({}).toArray();
       res.send(jobs);
     });
 
-    // Get single job using id
+    //get single job using id
     app.get("/all-jobs/:id", async (req, res) => {
       const id = req.params.id;
       const job = await jobsCollections.findOne({
@@ -70,15 +74,16 @@ async function run() {
       res.send(job);
     });
 
-    // Get jobs by email
+    //get jobs by email
     app.get("/myJobs/:email", async (req, res) => {
+      //console.log(req.params.email);
       const jobs = await jobsCollections
         .find({ postedBy: req.params.email })
         .toArray();
       res.send(jobs);
     });
 
-    // Delete a job
+    //delete a job
     app.delete("/job/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
@@ -86,14 +91,16 @@ async function run() {
       res.send(result);
     });
 
-    // Update a job
+    //update a job
     app.patch("/update-job/:id", async (req, res) => {
       const id = req.params.id;
       const jobData = req.body;
       const filter = { _id: new ObjectId(id) };
       const options = { upsert: true };
       const updateDoc = {
-        $set: { ...jobData },
+        $set: {
+          ...jobData,
+        },
       };
       const result = await jobsCollections.updateOne(
         filter,
@@ -116,9 +123,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Hello developer!");
+  res.send("Hello developer");
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Example app listening on port ${port}`);
 });
