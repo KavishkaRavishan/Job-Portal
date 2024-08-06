@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100;9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800;9..40,900;9..40,1000&display=swap");
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: #ebeff5;
+  color: #2e2e2e;
+}
+
+.active {
+  color: #1aaf0c; /* Light coral color */
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: #546e7a; /* Slate grey */
+}
+
+li {
+  list-style: none;
+}
+
+.btns {
+  padding: 10px 20px;
+  margin-right: 6px;
+  background: #b2ebf2; /* Light cyan background */
+  border: none;
+  border: 0.6px solid #80deea; /* Cyan border */
+  border-radius: 5px;
+  color: #004d40; /* Dark cyan text */
+  cursor: pointer;
+}
+
+/* jobs page */
+
+.card {
+  margin: 20px;
+  border: 2px solid #d1d9e0; /* Light grey */
+  padding: 20px;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.card-title {
+  margin-bottom: 1rem;
+  color: #00796b; /* Dark cyan */
+}
+
+.card-reviews {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.rating-star {
+  color: #ffb74d; /* Light orange */
+}
+
+.total-reviews {
+  font-size: 0.9rem;
+  margin-left: 10px;
+  color: #616161; /* Grey */
+}
+
+.card-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bag-icon {
+  color: #546e7a; /* Slate grey */
+}
+
+.sidebar-title {
+  font-size: 22px;
+  font-weight: normal;
+  margin-bottom: 20px;
+  color: #3949ab; /* Indigo */
+}
+
+.sidebar-items {
+  margin-top: 20px;
+}
+
+.sidebar-label-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #333333;
+}
+
+.sidebar-label-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #dcedc8; /* Light green */
+  border-radius: 50%;
+}
+
+.all {
+  background: linear-gradient(
+    to right,
+    #4fc3f7,
+    #ff8a80
+  ); /* Light blue to light red gradient */
+}
+
+.sidebar-label-container:hover input ~ .checkmark {
+  background-color: #aed581; /* Medium green */
+}
+
+.sidebar-label-container input:checked ~ .checkmark {
+  background-color: #66bb6a; /* Medium green */
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.sidebar-label-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.sidebar-label-container .checkmark:after {
+  top: 6.4px;
+  left: 6.4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: white;
+}
+
+.line {
+  margin-top: 3rem;
+  border-color: #cfd8dc; /* Light grey */
+}
+
+/* create a job page */
+
+.create-job-flex {
+  @apply flex flex-col lg:flex-row items-center justify-between gap-8;
+}
+
+.create-job-input {
+  @apply block w-full flex-1 bg-white py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm sm:leading-6;
+  background-color: #eceff1; /* Light blue-grey */
+  border: 1px solid #b0bec5; /* Light blue-grey border */
+  color: #333333;
+}
