@@ -30,9 +30,9 @@ const client = new MongoClient(uri, {
 
 app.use(express.static(path.join(__dirname, "/Job-Portal-Client/dist")));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "Job-Portal-Client", "index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "Job-Portal-Client", "dist", "index.html"));
+});
 
 async function run() {
   try {
