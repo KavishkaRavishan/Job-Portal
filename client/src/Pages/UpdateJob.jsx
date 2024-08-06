@@ -35,7 +35,7 @@ const UpdateJob = () => {
       ? selectdOption.map((option) => option.value)
       : [];
     //console.log(data);
-    fetch(`http://localhost:5000/update-job/${id}`, {
+    fetch(`https://jobportal-yaql.onrender.com/update-job/${id}`, {
       method: "PATCH",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),

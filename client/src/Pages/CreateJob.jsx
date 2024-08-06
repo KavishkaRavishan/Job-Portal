@@ -13,7 +13,7 @@ const CreateJob = () => {
   const onSubmit = (data) => {
     data.skills = selectdOption;
     //console.log(data);
-    fetch("http://localhost:5000/post-job", {
+    fetch("https://jobportal-yaql.onrender.com/post-job", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),

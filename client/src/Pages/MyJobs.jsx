@@ -6,7 +6,7 @@ const MyJobs = () => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/myJobs/kkravishan2@gmail.com")
+    fetch("https://jobportal-yaql.onrender.com/myJobs/kkravishan2@gmail.com")
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
