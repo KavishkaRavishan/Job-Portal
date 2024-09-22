@@ -19,7 +19,7 @@ const Navbar = () => {
       <nav className="flex justify-between items-center py-6">
         {/* Icon */}
         <img
-          src="/images/jobnav.png"
+          src="https://firebasestorage.googleapis.com/v0/b/job-portal-1c987.appspot.com/o/jobnav.png?alt=media&token=04f07dce-b529-412f-9925-90102eb39ad2"
           alt="Job Portal Icon"
           width="60"
           height="60"
